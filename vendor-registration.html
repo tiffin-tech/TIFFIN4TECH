@@ -106,16 +106,44 @@
             <label for="pincode" class="block text-sm font-medium text-gray-700 mb-1">Pincode *</label>
             <input type="text" id="pincode" name="pincode" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
           </div>
-          <div>
-            <label for="locations" class="block text-sm font-medium text-gray-700 mb-1">Delivery Locations *</label>
-            <select id="locations" name="locations" multiple required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
-              <option value="A2">A2 Hostel</option>
-              <option value="A3">A3 Hostel</option>
-              <option value="A4">A4 Hostel</option>
-              <option value="A5">A5 Hostel</option>
-            </select>
-            <p class="text-xs text-gray-500 mt-1">Hold Ctrl/Cmd to select multiple locations</p>
-          </div>
+         <div>
+  <label class="block text-sm font-medium text-gray-700 mb-2">Delivery Locations *</label>
+  
+  <div class="space-y-2">
+    <!-- A2 Hostel -->
+    <label class="flex items-center space-x-2">
+      <input type="checkbox" name="locations" value="A2" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+      <span class="text-gray-700">A2 Hostel</span>
+    </label>
+
+    <!-- A3 Hostel -->
+    <label class="flex items-center space-x-2">
+      <input type="checkbox" name="locations" value="A3" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+      <span class="text-gray-700">A3 Hostel</span>
+    </label>
+
+    <!-- A4 Hostel -->
+    <label class="flex items-center space-x-2">
+      <input type="checkbox" name="locations" value="A4" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+      <span class="text-gray-700">A4 Hostel</span>
+    </label>
+
+    <!-- A5 Hostel -->
+    <label class="flex items-center space-x-2">
+      <input type="checkbox" name="locations" value="A5" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+      <span class="text-gray-700">A5 Hostel</span>
+    </label>
+
+    <!-- Outside Campus -->
+    <label class="flex items-center space-x-2">
+      <input type="checkbox" name="locations" value="Outside" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+      <span class="text-gray-700">Outside Campus</span>
+    </label>
+  </div>
+
+  <p class="text-xs text-gray-500 mt-2">Select one or more delivery locations</p>
+</div>
+
         </div>
 
         <!-- Pricing Information Section -->
@@ -145,9 +173,10 @@
               <option value="thursday">Thursday</option>
               <option value="friday">Friday</option>
               <option value="saturday">Saturday</option>
+               <option value="saturday">NONE</option>
             </select>
           </div>
-          <div>
+          <!---- <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Meal Times *</label>
             <div class="space-y-2">
               <div class="flex items-center">
@@ -159,7 +188,7 @@
                 <label for="dinner" class="text-sm text-gray-700">Dinner (7 PM - 9 PM)</label>
               </div>
             </div>
-          </div>
+          </div> --> 
         </div>
 
         <!-- Terms and Submit -->
