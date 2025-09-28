@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Manage Holidays - TiffinTech</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- FullCalendar -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+</head>
+<body class="bg-gray-50">
+
+  <!-- Header -->
+  <header class="bg-green-600 text-white py-4 shadow-md">
+    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Manage Holidays</h1>
+      <a href="vendor-dashboard.html" class="bg-white text-green-600 px-4 py-2 rounded-lg font-semibold hover:bg-green-100">Back to Dashboard</a>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="max-w-6xl mx-auto px-6 py-8">
+    <h2 class="text-xl font-semibold mb-4">Select Your Holidays</h2>
+
+    <!-- Calendar -->
+    <div id="calendar" class="bg-white p-4 rounded-lg shadow-md"></div>
+
+    <!-- Selected Holidays -->
+    <div class="mt-6">
+      <h3 class="text-lg font-semibold mb-4">Your Holidays</h3>
+      <div id="holiday-list" class="space-y-3">
+        <p class="text-gray-500 italic">No holidays selected yet.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal (fixed, high z so it's clickable) -->
+  <div id="holidayModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-80 pointer-events-auto" role="dialog" aria-modal="true">
+      <h2 class="text-lg font-bold mb-2">Choose Holiday Type</h2>
+      <p id="selectedDate" class="text-gray-600 mb-4"></p>
+
+      <div class="space-y-2">
+        <button type="button" class="holiday-option w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700" data-type="All Day">All Day Holiday</button>
+        <button type="button" class="holiday-option w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600" data-type="Afternoon">Afternoon Only</button>
+        <button type="button" class="holiday-option w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700" data-type="Night">Night Only</button>
+      </div>
+
+      <div class="mt-4">
+        <button id="closeModal" type="button" class="w-full py-2 bg-gray-200 rounded-lg hover:bg-gray-300">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const calendarEl = document.getElementById('calendar');
+      const holidayListEl = document.getElementById('holiday-list');
+      const modal = document.getElementById('holidayModal');
+      const selectedDateEl = document.getElementById('selectedDate');
+      const closeModalBtn = document.getElementById('closeModal');
+      const colors = {
+        "All Day": "#ef4444",    // red
+        "Afternoon": "#f59e0b",  // amber
+        "Night": "#2563eb"       // blue
+      };
+
+      // load from localStorage
+      let holidays = JSON.parse(localStorage.getItem('vendorHolidays') || "[]"); // [{date:"YYYY-MM-DD", type:"All Day"}]
+      let selectedDate = null;
+
+      // init calendar
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        selectable: true,
+        height: 'auto',
+        dateClick(info) {
+          selectedDate = info.dateStr;
+          openModalForDate(selectedDate);
+        }
+      });
+
+      calendar.render();
+
+      // render existing holidays on calendar
+      function renderSavedEvents() {
+        // remove all events first
+        calendar.getEvents().forEach(e => e.remove());
+        holidays.forEach(h => {
+          // use id = date so it's unique and easy to remove/update
+          calendar.addEvent({
+            id: h.date,
+            title: `${h.type} Holiday`,
+            start: h.date,
+            allDay: true,
+            backgroundColor: colors[h.type] || "#6b7280",
+            borderColor: colors[h.type] || "#6b7280",
+            textColor: "white"
+          });
+        });
+      }
+
+      renderSavedEvents();
+      updateHolidayList();
+
+      // open modal helper
+      function openModalForDate(dateStr) {
+        selectedDate = dateStr;
+        selectedDateEl.textContent = `Selected: ${formatDate(dateStr)}`;
+        modal.classList.remove('hidden');
+
+        // focus first option for keyboard users
+        const firstBtn = modal.querySelector('.holiday-option');
+        if (firstBtn) firstBtn.focus();
+      }
+
+      // close modal helper
+      function closeModal() {
+        modal.classList.add('hidden');
+        selectedDate = null;
+      }
+
+      // attach holiday-option handlers (delegation)
+      modal.addEventListener('click', function (ev) {
+        const option = ev.target.closest('.holiday-option');
+        if (!option) return;
+        const type = option.dataset.type;
+        if (!selectedDate) return;
+
+        // remove existing for same date
+        holidays = holidays.filter(h => h.date !== selectedDate);
+
+        // add new
+        const newEntry = { date: selectedDate, type: type };
+        holidays.push(newEntry);
+
+        // save & render
+        localStorage.setItem('vendorHolidays', JSON.stringify(holidays));
+        renderSavedEvents();
+        updateHolidayList();
+        closeModal();
+      });
+
+      // close buttons & overlay click
+      closeModalBtn.addEventListener('click', closeModal);
+      // click overlay outside modal content to close
+      modal.addEventListener('click', function (ev) {
+        if (ev.target === modal) closeModal();
+      });
+      // ESC key to close
+      document.addEventListener('keydown', function (ev) {
+        if (ev.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+      });
+
+      // Update holiday list UI
+      function updateHolidayList() {
+        holidayListEl.innerHTML = '';
+        if (!holidays || holidays.length === 0) {
+          holidayListEl.innerHTML = `<p class="text-gray-500 italic">No holidays selected yet.</p>`;
+          return;
+        }
+
+        // sort by date (asc)
+        holidays.sort((a, b) => a.date.localeCompare(b.date));
+
+        holidays.forEach(h => {
+          const card = document.createElement('div');
+          card.className = "flex items-center justify-between bg-gray-50 p-3 rounded-lg shadow-sm hover:bg-gray-100 transition";
+
+          // left: color dot + date + type
+          const left = document.createElement('div');
+          left.className = "flex items-center space-x-4";
+          const dot = document.createElement('div');
+          dot.className = "flex items-center justify-center h-10 w-10 rounded-full text-white font-semibold";
+          dot.style.backgroundColor = colors[h.type] || '#6b7280';
+          // short label inside dot
+          dot.textContent = h.type[0];
+
+          const info = document.createElement('div');
+          const dateP = document.createElement('p');
+          dateP.className = "font-medium text-gray-800";
+          dateP.textContent = formatDate(h.date);
+          const typeP = document.createElement('p');
+          typeP.className = "text-sm text-gray-600";
+          typeP.textContent = `${h.type} Holiday`;
+
+          info.appendChild(dateP);
+          info.appendChild(typeP);
+
+          left.appendChild(dot);
+          left.appendChild(info);
+
+          // right: edit + remove buttons
+          const right = document.createElement('div');
+          right.className = "flex items-center gap-2";
+
+          const editBtn = document.createElement('button');
+          editBtn.type = 'button';
+          editBtn.className = "px-3 py-1 bg-white border border-gray-200 rounded-md text-gray-700 hover:bg-gray-100";
+          editBtn.textContent = "Edit";
+          editBtn.dataset.date = h.date;
+          editBtn.addEventListener('click', () => {
+            // open modal for that date to change type
+            selectedDate = h.date;
+            openModalForDate(selectedDate);
+          });
+
+          const delBtn = document.createElement('button');
+          delBtn.type = 'button';
+          delBtn.className = "px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700";
+          delBtn.textContent = "Remove";
+          delBtn.dataset.date = h.date;
+          delBtn.addEventListener('click', () => {
+            // remove holiday from array
+            holidays = holidays.filter(x => x.date !== h.date);
+            localStorage.setItem('vendorHolidays', JSON.stringify(holidays));
+            // remove event from calendar too
+            const ev = calendar.getEventById(h.date);
+            if (ev) ev.remove();
+            updateHolidayList();
+          });
+
+          right.appendChild(editBtn);
+          right.appendChild(delBtn);
+
+          card.appendChild(left);
+          card.appendChild(right);
+          holidayListEl.appendChild(card);
+        });
+      }
+
+      // format YYYY-MM-DD to friendly string
+      function formatDate(dateStr) {
+        // create Date as local midnight
+        const d = new Date(dateStr + 'T00:00:00');
+        return d.toLocaleDateString(undefined, { day: '2-digit', month: 'short', year: 'numeric' });
+      }
+
+    });
+  </script>
+</body>
+</html>

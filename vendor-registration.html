@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendor Registration - TiffinTech</title>
+  <!-- Tailwind CSS for styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="css/vendor-registration.css">
+</head>
+<body class="bg-gray-50">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-lg">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between">
+        <div class="flex space-x-7">
+          <div>
+            <a href="index.html" class="flex items-center py-4">
+              <span class="font-semibold text-green-600 text-2xl">TiffinTech</span>
+            </a>
+          </div>
+          <div class="hidden md:flex items-center space-x-1">
+            <a href="index.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Home</a>
+            <a href="browse-vendors.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Browse</a>
+          </div>
+        </div>
+        <div class="hidden md:flex items-center space-x-3">
+          <a href="vendor-dashboard.html" class="py-2 px-4 font-medium text-white bg-green-600 rounded hover:bg-green-700 transition duration-300">Register as Vendor</a>
+        </div>
+        <div class="md:hidden flex items-center">
+          <button class="outline-none mobile-menu-button">
+            <svg class="w-6 h-6 text-gray-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="hidden mobile-menu">
+      <ul class="pt-2 pb-3">
+        <li><a href="index.html" class="block pl-4 pr-4 py-2 text-sm text-gray-700 hover:bg-green-500 hover:text-white">Home</a></li>
+        <li><a href="browse-vendors.html" class="block pl-4 pr-4 py-2 text-sm text-gray-极00 hover:bg-green-500 hover:text-white">Browse</a></li>
+        <li><a href="vendor-dashboard.html" class="block pl-4 pr-4 py-2 text-sm text-gray-700 hover:bg-green-500 hover:text-white">Register as Vendor</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-green-600 text-white py-12">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h1 class="text-3xl font-bold mb-4">Vendor Registration</h1>
+      <p class="text-green-100">Join our platform to reach more students and grow your tiffin service business</p>
+    </div>
+  </header>
+
+  <!-- Registration Form -->
+  <main class="max-w-4xl mx-auto px-6 py-12">
+    <div class="bg-white rounded-lg shadow-md p-8">
+      <form id="vendor-registration-form">
+        <!-- Personal Information Section -->
+        <h2 class="text-2xl font-bold mb-6 pb-2 border-b border-gray-200">Personal Information</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+            <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+          </div>
+          <div>
+            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+            <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+          </div>
+          <div>
+            <label for="experience" class="block text-sm font-medium text-gray-700 mb-1">Years of Experience</label>
+            <input type="number" id="experience" name="experience" min="0" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+          </div>
+        </div>
+
+        <!-- Business Information Section -->
+        <h2 class="text-2xl font-bold mb-6 pb-2 border-b border-gray-200">Business Information</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <label for="serviceName" class="block text-sm font-medium text-gray-700 mb-1">Service Name *</label>
+            <input type="text" id="serviceName" name="serviceName" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+          </div>
+          <div>
+            <label for="foodType" class="block text-sm font-medium text-gray-700 mb-1">Food Type *</label>
+            <select id="foodType" name="foodType" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+              <option value="">Select Food Type</option>
+              <option value="veg">Vegetarian</option>
+              <option value="nonveg">Non-Vegetarian</option>
+              <option value="both">Both Vegetarian & Non-Vegetarian</option>
+            </select>
+          </div>
+          <div class="md:col-span-2">
+            <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Full Address *</label>
+            <textarea id="address" name="address" rows="3" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+          </div>
+          <div>
+            <label for="pincode" class="block text-sm font-medium text-gray-700 mb-1">Pincode *</label>
+            <input type="text" id="pincode" name="pincode" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+          </div>
+         <div>
+  <label class="block text-sm font-medium text-gray-700 mb-2">Delivery Locations *</label>
+  
+  <div class="space-y-2">
+    <!-- A2 Hostel -->
+    <label class="flex items-center space-x-2">
+      <input type="checkbox" name="locations" value="A2" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+      <span class="text-gray-700">A2 Hostel</span>
+    </label>
+
+    <!-- A3 Hostel -->
+    <label class="flex items-center space-x-2">
+      <input type="checkbox" name="locations" value="A3" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+      <span class="text-gray-700">A3 Hostel</span>
+    </label>
+
+    <!-- A4 Hostel -->
+    <label class="flex items-center space-x-2">
+      <input type="checkbox" name="locations" value="A4" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+      <span class="text-gray-700">A4 Hostel</span>
+    </label>
+
+    <!-- A5 Hostel -->
+    <label class="flex items-center space-x-2">
+      <input type="checkbox" name="locations" value="A5" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+      <span class="text-gray-700">A5 Hostel</span>
+    </label>
+
+    <!-- Outside Campus -->
+    <label class="flex items-center space-x-2">
+      <input type="checkbox" name="locations" value="Outside" class="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500">
+      <span class="text-gray-700">Outside Campus</span>
+    </label>
+  </div>
+
+  <p class="text-xs text-gray-500 mt-2">Select one or more delivery locations</p>
+</div>
+
+        </div>
+
+        <!-- Pricing Information Section -->
+        <h2 class="text-2xl font-bold mb-6 pb-2 border-b border-gray-200">Pricing Information</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <label for="tiffinRate" class="block text-sm font-medium text-gray-700 mb-1">Monthly Tiffin Rate (₹) *</label>
+            <input type="number" id="tiffinRate" name="tiffinRate" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+          </div>
+          <div>
+            <label for="oneTimeRate" class="block text-sm font-medium text-gray-700 mb-1">One-Time Meal Rate (₹) *</label>
+            <input type="number" id="oneTimeRate" name="oneTimeRate" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+          </div>
+        </div>
+
+        <!-- Availability Information Section -->
+        <h2 class="text-2xl font-bold mb-6 pb-2 border-b border-gray-200">Availability</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <label for="holiday" class="block text-sm font-medium text-gray-700 mb-1">Weekly Holiday *</label>
+            <select id="holiday" name="holiday" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+              <option value="">Select Weekly Holiday</option>
+              <option value="sunday">Sunday</option>
+              <option value="monday">Monday</option>
+              <option value="tuesday">Tuesday</option>
+              <option value="wednesday">Wednesday</option>
+              <option value="thursday">Thursday</option>
+              <option value="friday">Friday</option>
+              <option value="saturday">Saturday</option>
+               <option value="saturday">NONE</option>
+            </select>
+          </div>
+          <!---- <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Meal Times *</label>
+            <div class="space-y-2">
+              <div class="flex items-center">
+                <input type="checkbox" id="lunch" name="mealTimes" value="lunch" class="mr-2 focus:ring-green-500">
+                <label for="lunch" class="text-sm text-gray-700">Lunch (12 PM - 2 PM)</label>
+              </div>
+              <div class="flex items-center">
+                <input type="checkbox" id="dinner" name="mealTimes" value="dinner" class="mr-2 focus:ring-green-500">
+                <label for="dinner" class="text-sm text-gray-700">Dinner (7 PM - 9 PM)</label>
+              </div>
+            </div>
+          </div> --> 
+        </div>
+
+        <!-- Terms and Submit -->
+        <div class="mb-6">
+          <div class="flex items-center">
+            <input type="checkbox" id="terms" name="terms" required class="mr-2 focus:ring-green-500">
+            <label for="terms" class="text-sm text-gray-700">I agree to the <a href="#" class="text-green-600 hover:underline">Terms and Conditions</a></label>
+          </div>
+        </div>
+
+      
+<a href="vendor-dashboard.html" class="hover:text-green-400"></a> <button type="submit" class="w-full bg-green-600 text-white py-3 px-4 rounded-md hover:bg-green-700 transition duration-300 font-semibold">
+  Register as Vendor
+</button>
+
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white pt-10 pb-6">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-wrap">
+        <div class="w-full md:w-1/3 mb-6">
+          <h5 class="text-xl font-bold mb-4">TiffinTech</h5>
+          <p class="text-gray-400">Connecting Students with Local Tiffin Services</p>
+        </div>
+        <div class="w-full md:w-1/3 mb-6">
+          <h5 class="text-lg font-bold mb-4">Quick Links</h5>
+          <ul class="text-gray-400">
+            <li class="mb-2"><a href="index.html" class="hover:text-green-400">Home</a></li>
+            <li class="mb-2"><a href="browse-vendors.html" class="hover:text-green-400">Browse Vendors</a></li>
+            <li class="mb-2"><a href="vendor-registration.html" class="hover:text-green-400">Vendor Registration</a></li>
+          </ul>
+        </div>
+        <div class="w-full md:w-1/3 mb-6">
+          <h5 class="text-lg font-bold mb-4">Connect With Us</h5>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-green-400">
+              <i class="fab fa-facebook-f text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-green-400">
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-green-400">
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400 text-sm">
+        <p>&copy; 2023 TiffinTech. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/vendor-registration.js"></script>
+</body>
+</html>

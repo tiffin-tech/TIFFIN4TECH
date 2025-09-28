@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>TiffinTech - Login & Register</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
+
+  <div class="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
+    <!-- Logo / Title -->
+    <div class="text-center mb-6">
+      <h1 class="text-3xl font-bold text-green-600">TiffinTech</h1>
+      <p class="text-gray-500 mt-1">Welcome back! Please login or register</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex mb-6 border-b border-gray-200">
+      <button id="loginTab" class="flex-1 py-2 text-center font-semibold text-green-600 border-b-2 border-green-600">Login</button>
+      <button id="registerTab" class="flex-1 py-2 text-center font-semibold text-gray-500 hover:text-green-600">Register</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="space-y-4">
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Email</label>
+        <input type="email" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="you@example.com" required />
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Password</label>
+        <input type="password" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="••••••••" required />
+      </div>
+      <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 font-semibold">Login</button>
+      <p class="text-sm text-center text-gray-500 mt-3">
+        Don’t have an account? <a href="#" id="switchToRegister" class="text-green-600 hover:underline">Register</a>
+      </p>
+    </form>
+
+    <!-- Registration Form -->
+    <form id="registerForm" class="space-y-4 hidden">
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Full Name</label>
+        <input type="text" id="regName" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="John Doe" required />
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Email</label>
+        <input type="email" id="regEmail" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="you@example.com" required />
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Password</label>
+        <input type="password" id="regPassword" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="••••••••" required />
+      </div>
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Confirm Password</label>
+        <input type="password" id="regConfirmPassword" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="••••••••" required />
+      </div>
+      <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 font-semibold">Register</button>
+      <p class="text-sm text-center text-gray-500 mt-3">
+        Already have an account? <a href="#" id="switchToLogin" class="text-green-600 hover:underline">Login</a>
+      </p>
+    </form>
+  </div>
+
+  <script>
+    const loginTab = document.getElementById("loginTab");
+    const registerTab = document.getElementById("registerTab");
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+    const switchToRegister = document.getElementById("switchToRegister");
+    const switchToLogin = document.getElementById("switchToLogin");
+
+    function showLogin() {
+      loginForm.classList.remove("hidden");
+      registerForm.classList.add("hidden");
+      loginTab.classList.add("text-green-600","border-b-2","border-green-600");
+      loginTab.classList.remove("text-gray-500");
+      registerTab.classList.remove("text-green-600","border-b-2","border-green-600");
+      registerTab.classList.add("text-gray-500");
+    }
+
+    function showRegister() {
+      registerForm.classList.remove("hidden");
+      loginForm.classList.add("hidden");
+      registerTab.classList.add("text-green-600","border-b-2","border-green-600");
+      registerTab.classList.remove("text-gray-500");
+      loginTab.classList.remove("text-green-600","border-b-2","border-green-600");
+      loginTab.classList.add("text-gray-500");
+    }
+
+    loginTab.addEventListener("click", showLogin);
+    registerTab.addEventListener("click", showRegister);
+    switchToRegister.addEventListener("click", e => { e.preventDefault(); showRegister(); });
+    switchToLogin.addEventListener("click", e => { e.preventDefault(); showLogin(); });
+
+    // ✅ Handle registration form submit + redirect
+    registerForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("regName").value;
+      const email = document.getElementById("regEmail").value;
+      const password = document.getElementById("regPassword").value;
+      const confirmPassword = document.getElementById("regConfirmPassword").value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      // TODO: Send data to backend API (for now we just log it)
+      console.log("User Registered:", { name, email });
+
+      // Redirect to vendor registration page
+      window.location.href = "vendor-registration.html";
+    });
+  </script>
+</body>
+</html>

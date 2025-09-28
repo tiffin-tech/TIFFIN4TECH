@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TiffinTech - Home</title>
+  <!-- Tailwind CSS for styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-50">
+  <!-- Navigation -->
+  <nav class="bg-white shadow-lg">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between">
+        <div class="flex space-x-7">
+          <div>
+            <a href="index.html" class="flex items-center py-4">
+              <span class="font-semibold text-green-600 text-2xl">TiffinTech</span>
+            </a>
+          </div>
+          <div class="hidden md:flex items-center space-x-1">
+            <a href="index.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Home</a>
+            <a href="browse-vendors.html" class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Browse</a>
+          </div>
+        </div>
+        <div class="hidden md:flex items-center space-x-3">
+          <a href="login_singup.html" class="py-2 px-4 font-medium text-white bg-green-600 rounded hover:bg-green-700 transition duration-300">Login_Register as Vendor</a>
+        </div>
+        <div class="md:hidden flex items-center">
+          <button class="outline-none mobile-menu-button">
+            <svg class="w-6 h-6 text-gray-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M4 极h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="hidden mobile-menu">
+      <ul class="pt-2 pb-3">
+        <li><a href="index.html" class="block pl-4 pr-4 py-2 text-sm text-gray-700 hover:bg-green-500 hover:text-white">Home</a></li>
+        <li><a href="browse-vendors.html" class="block pl-4 pr-4 py-2 text-sm text-gray-700 hover:bg-green-500 hover:text-white">Browse</a></li>
+        <li><a href="login_singup.html" class="block pl-4 pr-4 py-2 text-sm text-gray-700 hover:bg-green-500 hover:text-white">login_Register as Vendor</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="bg-green-600 text-white py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h1 class="text-4xl font-bold mb-4">Connecting Students with Local Tiffin Services</h1>
+      <p class="text-xl mb-8">Find the best home-cooked meals near your campus</p>
+      <a href="browse-vendors.html" class="bg-white text-green-600 font-semibold px-6 py-3 rounded-lg hover:bg-green-100 transition duration-300">Browse Vendors</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-12">Why Choose TiffinTech?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-utensils text-green-600 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Fresh Home-Cooked Meals</h3>
+          <p class="text-gray-600">Enjoy delicious, home-style meals prepared with care by local vendors.</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-truck text-green-600 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Convenient Delivery</h3>
+          <p class="text-gray-600">Get your meals delivered right to your hostel or campus location.</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-wallet text-green-600 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Affordable Pricing</h3>
+          <p class="text-gray-600">Quality meals at student-friendly prices with flexible payment options.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="bg-gray-100 py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+            <span class="text-2xl font-bold text-green-600">1</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Browse Vendors</h3>
+          <p class="text-gray-600">Explore various tiffin services near your location.</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+            <span class="text-2xl font-bold text-green-600">2</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Place Order</h3>
+          <p class="text-gray-600">Select your meal preferences and place your order.</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+            <span class="text-2xl font-bold text-green-600">3</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Make Payment</h3>
+          <p class="text-gray-600">Choose your preferred payment method.</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-white w-16 h-16 rounded-full flex items-center justify-center极auto mb-4 shadow-md">
+            <span class="text-2xl font-bold text-green-600">4</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Enjoy Meal</h3>
+          <p class="text-gray-600">Receive your delicious meal and enjoy!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Section -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-6">Ready to Get Started?</h2>
+      <p class="text-xl text-gray-600 mb-8">Join hundreds of students enjoying home-cooked meals daily</p>
+      <div class="flex justify-center space-x-4">
+        <a href="browse-vendors.html" class="bg-green-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-green-700 transition duration-300">Browse Vendors</a>
+        <a href="vendor-registration.html" class="bg-white text-green-600 font-semibold px-6 py-3 rounded-lg border border-green-600 hover:bg-green-50 transition duration-300">Login_Register as Vendor</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white pt-10 pb-6">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-wrap">
+        <div class="w-full md:w-1/3 mb-6">
+          <h5 class="text-xl font-bold mb-4">TiffinTech</h5>
+          <p class="text-gray-400">Connecting Students with Local Tiffin Services</p>
+        </div>
+        <div class="w-full md:w-1/3 mb-6">
+          <h5 class="text-lg font-bold mb-4">Quick Links</h5>
+          <ul class="text-gray-400">
+            <li class="mb-2"><a href="index.html" class="hover:text-green-400">Home</a></li>
+            <li class="mb-2"><a href="browse-vendors.html" class="hover:text-green-400">Browse Vendors</a></li>
+            <li class="mb-2"><a href="vendor-registration.html" class="hover:text-green-400">Vendor Registration</a></li>
+          </ul>
+        </div>
+        <div class="w-full md:w-1/3 mb-6">
+          <h5 class="text-lg font-bold mb-4">Connect With Us</h5>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-green-400">
+              <i class="fab fa-facebook-f text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-green-400">
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-green-400">
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400 text-sm">
+        <p>&copy; 2023 TiffinTech. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>
